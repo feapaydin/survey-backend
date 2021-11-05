@@ -41,3 +41,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Design patterns
 gem 'rails-patterns', '~> 0.9.0'
+
+# Read environment variables from .env file
+gem 'dotenv-rails'
