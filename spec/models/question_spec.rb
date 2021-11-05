@@ -2,12 +2,12 @@
 #
 # Table name: questions
 #
-#  id         :uuid             not null, primary key
-#  title      :string           not null
-#  type       :integer          default("text")
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  survey_id  :uuid             not null
+#  id            :uuid             not null, primary key
+#  question_type :integer          default(0)
+#  title         :string           not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  survey_id     :uuid             not null
 #
 # Indexes
 #
