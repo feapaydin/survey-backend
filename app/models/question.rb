@@ -21,6 +21,10 @@ class Question < ApplicationRecord
   enum question_type: %i[text choice], _default: :text
 
   belongs_to :survey
-  has_many :options
-  has_many :responses
+  has_many :options, dependent: :destroy
+  has_many :responses, dependent: :destroy
+
+  def choices
+    text? ? [] : options
+  end
 end
