@@ -6,4 +6,8 @@ class ApplicationController < ActionController::API
   def render_bad_request(data)
     render json: { success: false, payload: data }, status: :bad_request
   end
+
+  def render_not_found
+    render json: { success: false }, status: :not_found
+  end
 end

@@ -11,6 +11,11 @@ RSpec.describe 'Surveys', type: :request do
       expect(response).to have_http_status(:success)
     end
 
+    it 'returns not found on invalid id' do
+      get "/survey/invalid-id"
+      expect(response).to have_http_status(:not_found)
+    end
+
     it 'returns survey in response' do
       get "/survey/#{@survey.id}"
       body = JSON.parse(response.body).with_indifferent_access
@@ -24,5 +29,4 @@ RSpec.describe 'Surveys', type: :request do
       expect(response).to have_http_status(:success)
     end
   end
-
 end
