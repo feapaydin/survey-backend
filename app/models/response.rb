@@ -26,4 +26,11 @@ class Response < ApplicationRecord
   belongs_to :question
   belongs_to :option
   belongs_to :feedback
+
+  def as_json(opts = {})
+    super(opts).merge(
+      question: question.as_json,
+      option: option.as_json
+    )
+  end
 end

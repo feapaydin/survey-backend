@@ -27,4 +27,8 @@ class Question < ApplicationRecord
   def choices
     text? ? [] : options
   end
+
+  def as_json(options = {})
+    super(options).merge(choices: choices)
+  end
 end

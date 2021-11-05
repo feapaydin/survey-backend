@@ -18,4 +18,10 @@
 class Feedback < ApplicationRecord
   belongs_to :survey
   has_many :responses, dependent: :destroy
+
+  def as_json(opts = {})
+    super(opts).merge(
+      responses: responses.map(&:as_json)
+    )
+  end
 end
