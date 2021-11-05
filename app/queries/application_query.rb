@@ -1,2 +1,2 @@
-class ApplicationQuery < Services::Query
+class ApplicationQuery < Patterns::Query
 end
