@@ -3,11 +3,13 @@ require 'rails_helper'
 RSpec.describe 'Surveys', type: :request do
   before(:all) do
     @survey = Survey.first
-
-    get "/survey/#{@survey.id}"
   end
 
   describe 'GET /show/:id' do
+    before do
+      get "/survey/#{@survey.id}"
+    end
+    
     it 'returns http success' do
       expect(response).to have_http_status(:success)
     end
@@ -24,7 +26,7 @@ RSpec.describe 'Surveys', type: :request do
   end
 
   describe 'POST /create/:id' do
-    it 'returns http success' do
+    before do
       questions = @survey.questions
 
       post "/survey/#{@survey.id}", params: {
@@ -41,8 +43,14 @@ RSpec.describe 'Surveys', type: :request do
           ]
         }
       }
+    end
 
+    it 'returns http success' do
       expect(response).to have_http_status(:success)
+    end
+
+    it 'creates a feedback' do
+      expect(@survey.feedbacks.count).to eq(1)
     end
   end
 end
