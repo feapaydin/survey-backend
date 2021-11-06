@@ -9,7 +9,7 @@ RSpec.describe 'Surveys', type: :request do
     before do
       get "/survey/#{@survey.id}"
     end
-    
+
     it 'returns http success' do
       expect(response).to have_http_status(:success)
     end
@@ -51,6 +51,11 @@ RSpec.describe 'Surveys', type: :request do
 
     it 'creates a feedback' do
       expect(@survey.feedbacks.count).to eq(1)
+    end
+
+    it 'returns feedback in response body' do
+      body = JSON.parse(response.body).with_indifferent_access
+      expect(body[:feedback][:id]).to be_truthy
     end
   end
 end
