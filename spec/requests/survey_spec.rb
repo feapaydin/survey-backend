@@ -55,7 +55,7 @@ RSpec.describe 'Surveys', type: :request do
 
     it 'returns feedback in response body' do
       body = JSON.parse(response.body).with_indifferent_access
-      expect(body[:feedback][:id]).to be_truthy
+      expect(body[:payload][:feedback][:id]).to be_truthy
     end
   end
 end

@@ -8,5 +8,18 @@ class SurveyController < ApplicationController
   end
 
   def create
+    service = SurveyServices::FeedbackCreator.call(params[:id], feedback_params)
+
+    if service.result
+      render_success feedback: service.feedback
+    else
+      render_bad_request service.error
+    end
+  end
+
+  private
+
+  def feedback_params
+    params.require(:feedback).permit(:responses)
   end
 end
