@@ -1,3 +1,4 @@
+# Base class for all controllers
 class ApplicationController < ActionController::API
   def render_success(data)
     render json: { success: true, payload: data }, status: :ok

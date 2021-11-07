@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# Tests survey controller
 RSpec.describe 'Surveys', type: :request do
   before(:all) do
     @survey = Survey.first

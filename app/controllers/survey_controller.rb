@@ -1,3 +1,4 @@
+# Controller actions for /survey requests
 class SurveyController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound do
     render_not_found

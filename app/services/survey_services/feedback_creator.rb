@@ -1,8 +1,10 @@
 module SurveyServices
+  # Converts API request parameters into a valid format for Feedback Form
   class FeedbackCreator < ApplicationService
     attr_reader :survey_id, :feedback_params, :survey, :feedback, :error
 
     def initialize(survey_id, feedback_params)
+      super
       @survey_id = survey_id
       @feedback_params = feedback_params
     end
