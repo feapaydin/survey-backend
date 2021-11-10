@@ -11,7 +11,7 @@ Make sure you are using the right version of ruby (3.0.2) and then run
 to install necessary ruby gems.
 
 ### Start Server
-This is a dockerized ([a relative link](Dockerfile)) project. Simply run
+This is a dockerized ([Dockerfile](Dockerfile)) project. Simply run
 
 ```docker-compose up```
 
@@ -20,7 +20,7 @@ This project requires `postgres14-alpine` container to run the database and crea
 
 - The project container will run a Puma based Ruby on Rails server on `port 3000` and expose the 3000 port to host. Make sure nothing else runs on the same port on host.
 - Similarly, port 5432 on host machine will also be mapped to postgresql container of the project.
-- The data directory of PostgreSQL database container will be mapped as a volume to `~/Data/survey-backend/postgres` on host machine. You can change it in [a relative link](docker-compose.yml)file.
+- The data directory of PostgreSQL database container will be mapped as a volume to `~/Data/survey-backend/postgres` on host machine. You can change it in [docker-compose.yml](docker-compose.yml)file.
 
 ### Seeding
 The seeds.rb file contains dummy data that can be used for testing. Run the command
@@ -41,5 +41,5 @@ inside the project directory on host machine.
 - The test database will be truncated and re-seeded each time you run tests.
 
 #### Postman
-You can find a postman collection file in the project directory, [a relative link](SurveyBackend.postman_collection.json), that can be used to test API endpoints of the project manually.
+You can find a postman collection file in the project directory, [SurveyBackend.postman_collection.json](SurveyBackend.postman_collection.json), that can be used to test API endpoints of the project manually.
 
