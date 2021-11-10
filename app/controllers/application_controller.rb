@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
   end
 
   def render_bad_request(data)
-    render json: { success: false, payload: data }, status: :bad_request
+    render json: { success: false, errors: data }, status: :bad_request
   end
 
   def render_not_found

@@ -14,7 +14,7 @@ class SurveyController < ApplicationController
     if service.result
       render_success feedback: service.feedback
     else
-      render_bad_request service.error
+      render_bad_request service.errors
     end
   end
 

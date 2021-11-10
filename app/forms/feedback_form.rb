@@ -1,5 +1,7 @@
 # Validates and creates a new Feedback instance with Responses
 class FeedbackForm < Patterns::Form
+  param_key 'feedback'
+
   attribute :survey_id, String
   attribute :responses, Array[Object]
 
@@ -13,23 +15,23 @@ class FeedbackForm < Patterns::Form
   private
 
   def persist
-    create_feedback and create_responses
+    resource.survey = @survey
+    @feedback = resource
+
+    save_feedback_with_responses
   end
 
-  def create_feedback
-    @feedback = Feedback.create(survey: @survey)
-  end
-
-  def create_responses
-    responses.each do |response|
-      response_instance = Response.new(response.merge(feedback: @feedback))
-
-      if response_instance.valid?
-        response_instance.save
-      else
-        errors.add(:response, response_instance.errors.full_messages)
+  def save_feedback_with_responses
+    # Wrap all database transactions in a single transaction
+    ActiveRecord::Base.transaction do
+      resource.save!
+      responses.each do |response|
+        Response.create!(response.merge(feedback: resource))
       end
     end
+  rescue ActiveRecord::StatementInvalid => e
+    errors.add(:base, e.message)
+    false
   end
 
   # Validations
