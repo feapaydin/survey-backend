@@ -17,6 +17,6 @@
 #  fk_rails_...  (question_id => questions.id)
 #
 class Option < ApplicationRecord
-  belongs_to :question
+  belongs_to :question, optional: true
   has_many :responses, dependent: :destroy
 end

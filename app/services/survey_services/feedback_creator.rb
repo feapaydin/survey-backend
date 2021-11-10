@@ -4,25 +4,33 @@ module SurveyServices
     attr_reader :survey_id, :feedback_params, :survey, :feedback, :error
 
     def initialize(survey_id, feedback_params)
-      super
+      super()
       @survey_id = survey_id
       @feedback_params = feedback_params
     end
 
     def call
-      find_survey || (return false)
+      # Create feedback via form
+      feedback_form = FeedbackForm.new(Feedback.new, form_params)
 
-      # TODO: Create feedback via form
-      @feedback = { id: 1 }
+      if (valid = feedback_form.valid?)
+        feedback_form.save
+        @feedback = feedback_form.feedback
+        @survey = feedback_form.survey
+      else
+        @error = feedback_form.errors.full_messages
+      end
 
-      true
+      valid
     end
 
     private
 
-    def find_survey
-      @survey = Survey.find_by_id(@survey_id)
-      !@survey.nil?
+    def form_params
+      {
+        survey_id: @survey_id,
+        responses: @feedback_params[:responses]
+      }
     end
   end
 end

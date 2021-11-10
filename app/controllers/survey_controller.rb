@@ -21,6 +21,6 @@ class SurveyController < ApplicationController
   private
 
   def feedback_params
-    params.require(:feedback).permit(:responses)
+    params.require(:feedback).permit(responses: %i[question_id option_id body])
   end
 end
