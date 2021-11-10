@@ -46,10 +46,14 @@ class FeedbackForm < Patterns::Form
       question = @survey.questions.find_by_id(response[:question_id])
       @errors.add(:responses, "question #{response[:question_id]} does not exist in survey") if question.nil?
 
-      # Option check is only for choice-based questions
-      next if question.nil? || !question.choice?
+      next if question.nil?
 
-      question_option_must_exist(question, response[:option_id])
+      # Option check is only for choice-based questions
+      if question.choice?
+        question_option_must_exist(question, response[:option_id])
+      elsif question.text?
+        response_body_must_exist(question, response)
+      end
     end
   end
 
@@ -57,5 +61,11 @@ class FeedbackForm < Patterns::Form
     return if question.options.where(id: option_id).exists?
 
     @errors.add(:responses, "option #{option_id} does not exist in question #{question.id}")
+  end
+
+  def response_body_must_exist(question, response)
+    return if response[:body].present?
+
+    @errors.add(:responses, "response body must exist for text question #{question.id}")
   end
 end
