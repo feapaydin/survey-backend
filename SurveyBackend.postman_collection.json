@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "035dc851-7081-4de7-b0f8-0ead2849504b",
+		"name": "Survey Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Feedback",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"feedback\": {\n        \"responses\": [\n            {\n                \"question_id\": \"39c586bd-db09-401d-844d-a15596850326\",\n                \"option_id\": \"8ce4574a-f9bf-446d-aab7-7768630801ec\"\n            },\n            {\n                \"question_id\": \"09c11c0e-92b5-4f32-84b9-a6e54f541f98\",\n                \"body\": \"I like the cashier.\"\n            }\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/survey/2fb54ffa-9d5f-4f57-b825-61f383314b60",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"survey",
+						"2fb54ffa-9d5f-4f57-b825-61f383314b60"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Survey Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/survey/2fb54ffa-9d5f-4f57-b825-61f383314b60",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"survey",
+						"2fb54ffa-9d5f-4f57-b825-61f383314b60"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
