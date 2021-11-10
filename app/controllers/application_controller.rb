@@ -4,6 +4,10 @@ class ApplicationController < ActionController::API
     render json: { success: true, payload: data }, status: :ok
   end
 
+  def render_created(data)
+    render json: { success: true, payload: data }, status: :created
+  end
+
   def render_bad_request(data)
     render json: { success: false, errors: data }, status: :bad_request
   end

@@ -12,7 +12,7 @@ class SurveyController < ApplicationController
     service = SurveyServices::FeedbackCreator.call(params[:id], feedback_params)
 
     if service.result
-      render_success feedback: service.feedback
+      render_created feedback: service.feedback
     else
       render_bad_request service.errors
     end
