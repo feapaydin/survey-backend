@@ -28,6 +28,8 @@ group :development, :test do
 
   # Testing
   gem 'rspec-rails', '~> 5.0.2'
+
+  gem 'database_cleaner'
 end
 
 group :development do
