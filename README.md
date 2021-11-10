@@ -16,14 +16,14 @@ This is a dockerized ([Dockerfile](Dockerfile)) project. Simply run
 ```docker-compose up```
 
 inside the project directory to start the services. 
-This project requires `postgres14-alpine` container to run the database and creates it's own container from `ruby-3.0.2`.
+The project requires `postgres14-alpine` container to run the database and creates it's own container from `ruby-3.0.2`.
 
-- The project container will run a Puma based Ruby on Rails server on `port 3000` and expose the 3000 port to host. Make sure nothing else runs on the same port on host.
+- The project container will run a Puma based Ruby on Rails server on `port 3000` and expose the 3000 port to host. Make sure nothing else runs on the same port on host machine.
 - Similarly, port 5432 on host machine will also be mapped to postgresql container of the project.
-- The data directory of PostgreSQL database container will be mapped as a volume to `~/Data/survey-backend/postgres` on host machine. You can change it in [docker-compose.yml](docker-compose.yml)file.
+- The data directory of PostgreSQL database container will be mapped as a volume to `~/Data/survey-backend/postgres` directory on host machine. You can change it in [docker-compose.yml](docker-compose.yml) file.
 
 ### Seeding
-The seeds.rb file contains dummy data that can be used for testing. Run the command
+The [seeds.rb](db/seeds.rb) file contains dummy data that can be used for testing. Run the command
 
 ```rails db:seed```
 
@@ -31,7 +31,7 @@ to fill the database. You can specify the database using `RAILS_ENV` parameter.
 
 ### Testing
 
-This project uses Rspec library for testing. 
+This project uses [Rspec](https://github.com/rspec/rspec-rails) library for testing. 
 **The tests can be runned outside the Docker container of the project.** Make sure the database container is running and is accessible on port 5432 on the host machine. Then run the command:
 
 ```rspec```
